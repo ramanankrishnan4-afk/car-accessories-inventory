@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api/categories";
+const API_URL = `${import.meta.env.VITE_API_URL || "http://localhost:8080/api"}/categories`;
 
 // Get all categories
 export async function getCategories() {
@@ -42,9 +42,7 @@ export async function updateCategory(id, category) {
     if (!response.ok) {
         const errorText = await response.text();
         throw new Error(
-            errorText || `
-Failed to update category: $ { response.status }
-`
+            errorText || `Failed to update category: ${response.status}`
         );
     }
 
@@ -63,9 +61,7 @@ export async function deleteCategory(id) {
     if (!response.ok) {
         const errorText = await response.text();
         throw new Error(
-            errorText || `
-Failed to delete category: $ { response.status }
-`
+            errorText || `Failed to delete category: ${response.status}`
         );
     }
 }

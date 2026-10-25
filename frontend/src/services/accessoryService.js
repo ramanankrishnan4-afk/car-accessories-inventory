@@ -1,13 +1,11 @@
-const API_URL = "http://localhost:8080/api/accessories";
+const API_URL = `${import.meta.env.VITE_API_URL || "http://localhost:8080/api"}/accessories`;
 
 // Handle API responses
 async function handleResponse(response) {
     if (!response.ok) {
         const errorText = await response.text();
         throw new Error(
-            errorText || `
-Request failed with status $ { response.status }
-`
+            errorText || `Request failed with status ${response.status}`
         );
     }
 
@@ -26,9 +24,7 @@ export async function getAll() {
 
 // Get accessory by ID
 export async function getById(id) {
-    const response = await fetch(`
-$ { API_URL }
-/${id}`);
+    const response = await fetch(`${API_URL}/${id}`);
     return handleResponse(response);
 }
 

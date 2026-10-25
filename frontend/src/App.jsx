@@ -8,7 +8,7 @@ import Accessories from "./pages/Accessories";
 import StockManagement from "./pages/StockManagement";
 import MainLayout from "./layouts/MainLayout";
 
-const API_URL = "http://localhost:8080/api/accessories";
+const API_URL = `${import.meta.env.VITE_API_URL || "http://localhost:8080/api"}/accessories`;
 
 const EMPTY_FORM = {
   name: "",
